@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.davis.piersqure.eduquizAPI.dto.QuestionDto;
 import com.davis.piersqure.eduquizAPI.entity.Question;
 import com.davis.piersqure.eduquizAPI.service.QuestionService;
 
@@ -40,6 +41,12 @@ public class QuestionController {
     public ResponseEntity<Void> deleteQuestion(@PathVariable Long questionId) {
         questionService.deleteQuestionWithAnswers(questionId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    
+    @GetMapping("/generateQuestionSet")
+    public ResponseEntity<List<QuestionDto>> generateQuestionSet() {
+        List<QuestionDto> questionSet = questionService.generateQuestionSet();
+        return new ResponseEntity<>(questionSet, HttpStatus.OK);
     }
 
 }

@@ -2,8 +2,6 @@ package com.davis.piersqure.eduquizAPI.entity;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,8 +27,16 @@ public class Question {
 	@Column(name = "question_text")
 	private String questionText;
 
+	@Column(name = "subject")
+	private String subject;
+
+	@Column(name = "chapter")
+	private String chapter; // New field for chapter
+
+	@Column(name = "level")
+	private String level;
+
 	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
-	
 	private List<Answer> answers;
 
 }
