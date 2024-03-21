@@ -2,6 +2,9 @@ package com.davis.piersqure.eduquizAPI.entity;
 
 import java.util.List;
 
+import org.antlr.v4.runtime.misc.NotNull;
+import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,15 +28,21 @@ public class Question {
 	private Long id;
 
 	@Column(name = "question_text")
+	@NotBlank(message = "Question text is required")
 	private String questionText;
 
 	@Column(name = "subject")
+	@NotBlank(message = "Subject is required")
 	private String subject;
 
+	// New field for chapter
 	@Column(name = "chapter")
-	private String chapter; // New field for chapter
-
+	@NotBlank(message = "Chapter is required")
+	private String chapter; 
+	
 	@Column(name = "level")
+	@NotBlank(message = "Level is required")
+	@NotNull
 	private String level;
 
 	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
